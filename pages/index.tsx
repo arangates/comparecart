@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { set, get } from 'idb-keyval';
+import Head from 'next/head';
 
 import {
   SiteHeader,
@@ -10,11 +11,7 @@ import {
   Loader,
 } from 'components';
 
-import {
-  reducer,
-  initialState,
-  fetchProducts
-} from 'services/product';
+import { reducer, initialState, fetchProducts } from 'services/product';
 
 const IndexPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -38,7 +35,7 @@ const IndexPage = () => {
       type: 'SEARCH_PRODUCTS_REQUEST',
     });
 
-    fetchProducts(dispatch,searchQuery);
+    fetchProducts(dispatch, searchQuery);
   };
 
   const compareProducts = () => {
@@ -74,36 +71,48 @@ const IndexPage = () => {
   const { products, errorMessage, loading, showCompare } = state;
 
   return (
-    <div
-      id='app'
-      className='min-h-screen bg-white-200 antialiased xl:flex xl:flex-col xl:h-screen'
-    >
-      <SiteHeader compare={compareProducts} />
-      <div className='xl:flex-1 xl:flex xl:overflow-y-hidden'>
-        <SideBar />
-        <main className='py-1 ml-8 xl:flex-1 xl:overflow-x-hidden'>
-          <Title
-            title={showCompare ? 'Compare cart' : 'Search for a product'}
-            subTitle={
-              showCompare ? `you compare these ${products.length} items` : ''
-            }
-          />
-          {showCompare ? '' : <Search fetchProducts={search} />}
-
-          {loading && !errorMessage ? (
-            <Loader />
-          ) : errorMessage ? (
-            <div className='errorMessage'>{errorMessage}</div>
-          ) : (
-            <ProductList
-              handleAddToCart={handleAddToCart}
-              products={products}
-              showAnalytics={showCompare}
+    <>
+      <Head>
+        <title>CompareCart</title>
+        <meta name='viewport' content='initial-scale=1.0, width=device-width' />
+        <meta name='theme-color' content='#4553F0' />
+        <meta
+          name='description'
+          content='The compare cart will show the difference between the sellers, rating and price.'
+        />
+      </Head>
+      <div
+        id='app'
+        className='min-h-screen bg-white-200 antialiased xl:flex xl:flex-col xl:h-screen'
+      >
+        <SiteHeader compare={compareProducts} />
+        <div className='xl:flex-1 xl:flex xl:overflow-y-hidden'>
+          <SideBar />
+          <main className='py-1 ml-8 xl:flex-1 xl:overflow-x-hidden'>
+            <Title
+              htmlFor='search'
+              title={showCompare ? 'Compare cart' : 'Search for a product'}
+              subTitle={
+                showCompare ? `you compare these ${products.length} items` : ''
+              }
             />
-          )}
-        </main>
+            {showCompare ? '' : <Search fetchProducts={search} />}
+
+            {loading && !errorMessage ? (
+              <Loader />
+            ) : errorMessage ? (
+              <div className='errorMessage'>{errorMessage}</div>
+            ) : (
+              <ProductList
+                handleAddToCart={handleAddToCart}
+                products={products}
+                showAnalytics={showCompare}
+              />
+            )}
+          </main>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

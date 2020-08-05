@@ -18,12 +18,12 @@ const OptionsList = ({ menuOptions }: Iprops) => {
 const renderOptions = (menuOptions: MenuOptions): React.ReactNode => {
   return Object.entries(menuOptions).map(([heading, options]) => {
     return (
-      <div key={heading}>
-        <OptionsListHeading key={heading} title={heading} />
-        {options.map((option:Item) => (
+      <>
+        <OptionsListHeading key={heading.toString()} title={heading} />
+        {options.map((option: Item) => (
           <OptionsListItem key={option.id} item={option} />
         ))}
-      </div>
+      </>
     );
   });
 };

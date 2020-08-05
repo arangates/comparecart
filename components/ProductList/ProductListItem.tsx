@@ -69,7 +69,7 @@ const ProductListItem = ({ product, handleAddToCart }: IProps) => {
       <AveragePrice offers={product.offerData.offers} />
       <LowestPrice offers={product.offerData.offers} />
 
-      <div className='text-gray-600 dark:text-gray-400'>
+      <div className='hidden md:block text-gray-600 dark:text-gray-400'>
         <span className='mt-2 text-black dark:text-gray-200'>
           {product.rating}
         </span>

@@ -3,15 +3,16 @@ import React from 'react';
 interface Iprops {
   title?: string;
   subTitle?: string;
+  htmlFor?: string;
 }
 
-const Title = ({ title, subTitle }: Iprops) => {
+const Title = ({ title, subTitle, htmlFor }: Iprops) => {
   return (
     <>
-      <h1 className='text-2xl h-10 text-blue-grey'>
+      <label htmlFor={htmlFor} className='text-2xl h-10 text-blue-grey'>
         {title ? title : 'Search for a product'}
-      </h1>
-      <h5 className='text-gray-600 dark:text-gray-400'>{subTitle}</h5>
+      </label>
+      <h2 className='text-gray-600 h-5 dark:text-gray-400'>{subTitle}</h2>
     </>
   );
 };

@@ -7,7 +7,6 @@ const Search = ({ fetchProducts }: any) => {
   };
 
   return (
-    <div>
       <form onSubmit={handleOnSubmit}>
         <div className='md:flex relative py-5'>
           <input
@@ -25,7 +24,6 @@ const Search = ({ fetchProducts }: any) => {
           </button>
         </div>
       </form>
-    </div>
   );
 };
 
