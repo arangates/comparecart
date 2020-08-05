@@ -1,6 +1,7 @@
 {
   "short_name": "Comparecart",
   "name": "Compare cart",
+  "description": "The compare cart will show the difference between the sellers, rating and price.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -13,12 +14,18 @@
       "sizes": "192x192"
     },
     {
+      "purpose": "maskable",
       "src": "logo512.png",
       "type": "image/png",
       "sizes": "512x512"
+    },
+    {
+      "purpose": "maskable",
+      "src": "maskable_logo1024",
+      "type": "image/png",
+      "sizes": "1024x512"
     }
   ],
-  "description": "The compare cart will show the difference between the sellers, rating and price.",
   "lang": "en-US",
   "start_url": ".",
   "display": "standalone",
