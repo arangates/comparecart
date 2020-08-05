@@ -1,12 +1,11 @@
 export interface MenuOptions {
-  'my store': Item[];
-  'Research Products': Item[];
-  'Learn': Item[];
-  'Settings': Item[];
+  id:      number;
+  name:    string;
+  options: Option[];
 }
 
-export interface Item {
-  id: number;
+export interface Option {
+  id:   number;
   icon: string;
   name: string;
 }

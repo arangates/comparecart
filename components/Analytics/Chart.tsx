@@ -18,7 +18,7 @@ export const Chart = ({ items, title, colour, name }: chartProps) => {
         {name}
       </h2>
       <LineChart width={400} height={400} data={data}>
-        <Line type='monotone' dataKey='uv' stroke='#8884d8' />
+        <Line  dataKey='uv' stroke='#8884d8' />
       </LineChart>
     </div>
   );

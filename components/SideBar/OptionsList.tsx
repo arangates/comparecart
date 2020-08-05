@@ -1,10 +1,10 @@
 import React from 'react';
 import OptionsListItem from './OptionsListItem';
 import OptionsListHeading from './OptionsListHeading';
-import { MenuOptions, Item } from './MenuOptions';
+import { MenuOptions, Option } from './MenuOptions';
 
 interface Iprops {
-  menuOptions: MenuOptions;
+  menuOptions: MenuOptions[];
 }
 
 const OptionsList = ({ menuOptions }: Iprops) => {
@@ -15,15 +15,15 @@ const OptionsList = ({ menuOptions }: Iprops) => {
   );
 };
 
-const renderOptions = (menuOptions: MenuOptions): React.ReactNode => {
-  return Object.entries(menuOptions).map(([heading, options]) => {
+const renderOptions = (menuOptions: MenuOptions[]): React.ReactNode => {
+  return menuOptions.map((option: MenuOptions) => {
     return (
-      <>
-        <OptionsListHeading key={heading.toString()} title={heading} />
-        {options.map((option: Item) => (
+      <div key={option.id}>
+        <OptionsListHeading title={option.name} />
+        {option.options.map((option: Option) => (
           <OptionsListItem key={option.id} item={option} />
         ))}
-      </>
+      </div>
     );
   });
 };

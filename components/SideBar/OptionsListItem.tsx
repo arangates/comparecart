@@ -1,8 +1,8 @@
 import React from 'react';
-import { Item } from './MenuOptions';
+import { Option } from './MenuOptions';
 
 interface Iprops {
-  item: Item;
+  item: Option;
 }
 
 const OptionsListItem = ({ item }: Iprops) => {
