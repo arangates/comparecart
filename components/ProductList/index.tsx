@@ -21,13 +21,26 @@ const ProductList = ({ products, showAnalytics, handleAddToCart }: IProps) => {
         ))}
       </div>
       {products.map((product) => (
-        <ProductListItem handleAddToCart={handleAddToCart} key={product.id} product={product} />
+        <ProductListItem
+          handleAddToCart={handleAddToCart}
+          key={product.id}
+          product={product}
+        />
       ))}
       {showAnalytics ? (
         <Analytics
-          name={products.map((item) => item.title)}
-          prices={products.map((item) => item.offerData.offers[0].price)}
-          ratings={products.map((item) => item.rating)}
+          prices={products.map((product) => {
+            return {
+              name: product.title,
+              val: product.offerData.offers[0].price,
+            };
+          })}
+          ratings={products.map((product) => {
+            return {
+              name: product.title,
+              val: product.rating,
+            };
+          })}
         />
       ) : (
         ''

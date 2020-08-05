@@ -1,16 +1,15 @@
 import React from 'react';
 import { Chart } from './Chart';
 interface Iprops {
-  prices?: number[];
-  ratings?: number[];
-  name: string[];
+  prices?: object[];
+  ratings?: object[];
 }
 
-const Analytics = ({ prices, ratings, name }: Iprops) => {
+const Analytics = ({ prices, ratings }: Iprops) => {
   return (
     <div className='flex relative py-5'>
       {prices ? (
-        <Chart colour='#6A75F3' title='Avg. Price' items={prices} name={name} />
+        <Chart colour='#6A75F3' title='Avg. Price' items={prices}/>
       ) : (
         ''
       )}
@@ -19,7 +18,6 @@ const Analytics = ({ prices, ratings, name }: Iprops) => {
           colour='#FF6F31'
           title='Product Rating'
           items={ratings}
-          name={name}
         />
       ) : (
         ''
