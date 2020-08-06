@@ -1,8 +1,8 @@
-import { MenuOptions } from "components/SideBar/MenuOptions";
+import { MenuOptions } from 'components/SideBar/MenuOptions';
 
 export const BOL_SERVER = 'https://api.bol.com';
-export const PROXY_SERVER = 'https://thingproxy.freeboard.io/fetch/';
-export const baseURL = BOL_SERVER;
+export const PROXY_SERVER = 'https://cors-anywhere.herokuapp.com/';
+export const baseURL = PROXY_SERVER + BOL_SERVER;
 export const CATALOG_SEARCH = '/catalog/v4/search/';
 
 export const BOL_CATALOG_URL = baseURL + CATALOG_SEARCH;
@@ -13,7 +13,7 @@ export const DEFAULT_PARAMS: any = {
   limit: 20,
   dataoutput: 'products',
   apikey: 'DA31B370BBDF4DE78B57BBEA652ADC94',
-  format: 'json'
+  format: 'json',
 };
 
 export const TableHeading = [
@@ -45,107 +45,107 @@ export const TableHeading = [
 
 export const MenuItems: MenuOptions[] = [
   {
-     "id":1,
-     "name":"my store",
-     "options":[
-        {
-           "id":1,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":2,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":3,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":4,
-           "icon":"some.svg",
-           "name":"Item Name"
-        }
-     ]
+    id: 1,
+    name: 'my store',
+    options: [
+      {
+        id: 1,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 2,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 3,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 4,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+    ],
   },
   {
-     "id":2,
-     "name":"Research Products",
-     "options":[
-        {
-           "id":1,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":2,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":3,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":4,
-           "icon":"some.svg",
-           "name":"Item Name"
-        }
-     ]
+    id: 2,
+    name: 'Research Products',
+    options: [
+      {
+        id: 1,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 2,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 3,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 4,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+    ],
   },
   {
-     "id":3,
-     "name":"Learn",
-     "options":[
-        {
-           "id":1,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":2,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":3,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":4,
-           "icon":"some.svg",
-           "name":"Item Name"
-        }
-     ]
+    id: 3,
+    name: 'Learn',
+    options: [
+      {
+        id: 1,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 2,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 3,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 4,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+    ],
   },
   {
-     "id":4,
-     "name":"Settings",
-     "options":[
-        {
-           "id":1,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":2,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":3,
-           "icon":"some.svg",
-           "name":"Item Name"
-        },
-        {
-           "id":4,
-           "icon":"some.svg",
-           "name":"Item Name"
-        }
-     ]
-  }
+    id: 4,
+    name: 'Settings',
+    options: [
+      {
+        id: 1,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 2,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 3,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+      {
+        id: 4,
+        icon: 'some.svg',
+        name: 'Item Name',
+      },
+    ],
+  },
 ];
