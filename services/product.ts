@@ -4,6 +4,7 @@ export const initialState = {
   loading: true,
   products: [],
   errorMessage: null,
+  loadingMore: false,
 };
 
 export const reducer = (state: any, action: any) => {
@@ -14,17 +15,23 @@ export const reducer = (state: any, action: any) => {
         loading: true,
         errorMessage: null,
       };
-    case 'SHOW_COMPARE':
+    case 'LOAD_MORE':
       return {
         ...state,
-        loading: true,
-        errorMessage: null,
+        loadingMore: true,
       };
     case 'SEARCH_PRODUCTS_SUCCESS':
       return {
         ...state,
         loading: false,
         products: action.payload,
+      };
+
+    case 'LOAD_MORE_SUCCESS':
+      return {
+        ...state,
+        loadingMore: false,
+        products: state.products.concat(action.payload),
       };
     case 'SEARCH_PRODUCTS_FAILURE':
       return {
@@ -44,21 +51,35 @@ const objectToQueryString = (obj: any) => {
     .join('&');
 };
 
-export async function fetchProducts(
-  dispatch: React.Dispatch<any>,
-  searchQuery?: string
-) {
+export async function fetcher(newParams?: object) {
   let params = DEFAULT_PARAMS;
-  if (searchQuery) {
-    params = { ...DEFAULT_PARAMS, ...{ q: searchQuery } };
+  if (newParams) {
+    params = { ...DEFAULT_PARAMS, ...newParams };
   }
   const url: any = BOL_CATALOG_URL + '?' + objectToQueryString(params);
 
   let response = await fetch(url);
-  let results = await response.json();
+  return response.json();
+}
 
+export async function fetchProducts(
+  dispatch: React.Dispatch<any>,
+  newParams?: object
+) {
+  let results = await fetcher(newParams);
   dispatch({
     type: 'SEARCH_PRODUCTS_SUCCESS',
+    payload: results.products,
+  });
+}
+
+export async function fetchMoreProducts(
+  dispatch: React.Dispatch<any>,
+  newParams?: object
+) {
+  let results = await fetcher(newParams);
+  dispatch({
+    type: 'LOAD_MORE_SUCCESS',
     payload: results.products,
   });
 }

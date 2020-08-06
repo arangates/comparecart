@@ -11,7 +11,7 @@ import {
   ProductList,
 } from 'components';
 
-import { reducer, initialState, fetchProducts } from 'services/product';
+import { reducer, initialState, fetchProducts, fetchMoreProducts } from 'services/product';
 
 const MainPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -31,7 +31,7 @@ const MainPage = () => {
     dispatch({
       type: 'SEARCH_PRODUCTS_REQUEST',
     });
-    fetchProducts(dispatch, searchQuery);
+    fetchProducts(dispatch, { q: searchQuery });
   };
 
   // const compareProducts = () => {
@@ -47,8 +47,12 @@ const MainPage = () => {
   // };
 
   const handleLoadMore = () => {
-    console.log('loading more')
-  }
+    dispatch({
+      type: 'LOAD_MORE',
+    });
+    fetchMoreProducts(dispatch, { offset: products.length });
+    console.log('loading more');
+  };
   const handleAddToCart = (product: any) => {
     const selectedProducts = products.filter(
       (product: any) => product.selected
@@ -68,7 +72,7 @@ const MainPage = () => {
       )
       .catch((err) => console.log('It failed!', err));
   };
-  const { products, errorMessage, loading } = state;
+  const { products, errorMessage, loading ,loadingMore} = state;
 
   return (
     <div
@@ -92,6 +96,7 @@ const MainPage = () => {
               handleLoadMore={handleLoadMore}
               products={products}
               showAnalytics={false}
+              isLoadingMore={loadingMore}
             />
           )}
         </main>
