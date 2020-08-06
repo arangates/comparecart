@@ -5,6 +5,7 @@ interface IProps {
   product: Product;
   handleAddToCart?: any;
   handleRemove?: any;
+  showAnalytics?: boolean;
 }
 
 function getMinY(offers: any) {
@@ -52,6 +53,7 @@ const ProductListItem = ({
   product,
   handleAddToCart,
   handleRemove,
+  showAnalytics
 }: IProps) => {
   return (
     <div className='mt-2 mr-5 pr-10 flex px-4 py-4 justify-between bg-white dark:bg-gray-600 shadow-md rounded-lg cursor-pointer'>
@@ -89,7 +91,7 @@ const ProductListItem = ({
         <span>
           <button
             onClick={() =>
-              product.selected
+              showAnalytics
                 ? handleRemove(product)
                 : handleAddToCart(product)
             }

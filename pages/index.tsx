@@ -1,6 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
 import { set } from 'idb-keyval';
-// import Router from 'next/router';
 
 import {
   Loader,
@@ -11,13 +10,19 @@ import {
   ProductList,
 } from 'components';
 
-import { reducer, initialState, fetchProducts, fetchMoreProducts } from 'services/product';
+import {
+  reducer,
+  initialState,
+  fetchProducts,
+  fetchMoreProducts,
+} from 'services/product';
 
 const MainPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     fetchProducts(dispatch);
+    // Auto redirect to compare if required
     // get('selectedProducts').then((db: any) => {
     //   if (db?.length > 0) {
     //     Router.push('/compare');
@@ -34,18 +39,6 @@ const MainPage = () => {
     fetchProducts(dispatch, { q: searchQuery });
   };
 
-  // const compareProducts = () => {
-  //   const selectedProducts = products.filter(
-  //     (product: any) => product.selected
-  //   );
-  //   set('selectedProducts', selectedProducts);
-  //   dispatch({
-  //     type: 'SEARCH_PRODUCTS_SUCCESS',
-  //     compare: true,
-  //     payload: selectedProducts,
-  //   });
-  // };
-
   const handleLoadMore = () => {
     dispatch({
       type: 'LOAD_MORE',
@@ -54,25 +47,27 @@ const MainPage = () => {
     console.log('loading more');
   };
   const handleAddToCart = (product: any) => {
-    product.selected = !product.selected;
-    const selectedProducts = products.filter(
-      (product: any) => product.selected
+    // const selectedProducts = products.filter((item: any) => item.selected);
+    // if (selectedProducts.length === 10) {
+    //   return;
+    // }
+    // product.selected = !product.selected;
+    // console.table('slected prod', selectedProducts);
+    const updatedProducts = products.map(
+      (obj: any) => [product].find((o) => o.id === obj.id) || obj
     );
-    if (selectedProducts.length === 10) {
-      return;
-    }
-    set('selectedProducts', selectedProducts)
-      .then(() =>
+    set('selectedProducts', updatedProducts)
+      .then(() => {
+        console.log(product, products);
+
         dispatch({
           type: 'SEARCH_PRODUCTS_SUCCESS',
-          payload: products.map(
-            (obj: any) => [product].find((o) => o.id === obj.id) || obj
-          ),
-        })
-      )
+          payload: updatedProducts,
+        });
+      })
       .catch((err) => console.log('It failed!', err));
   };
-  const { products, errorMessage, loading ,loadingMore} = state;
+  const { products, errorMessage, loading, loadingMore } = state;
 
   return (
     <div

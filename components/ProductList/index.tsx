@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 interface IProps {
   products: Product[];
-  showAnalytics: Boolean;
+  showAnalytics: boolean;
   handleAddToCart?: any;
   handleRemove?: any;
   handleLoadMore?: any;
@@ -39,6 +39,7 @@ const ProductList = ({
             handleRemove={handleRemove}
             key={product.id}
             product={product}
+            showAnalytics={showAnalytics}
           />
         ))}
       </div>
