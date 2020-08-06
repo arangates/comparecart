@@ -19,18 +19,14 @@ const Compare = () => {
   }, []);
 
   const handleRemove = (product: any) => {
-    console.log(product)
     const selectedProducts = products.filter(
-      (product: any) => product.selected
+      (item: any) => item.id !== product.id
     );
-    product.selected = !product.selected;
     set('selectedProducts', selectedProducts)
       .then(() =>
         dispatch({
           type: 'SEARCH_PRODUCTS_SUCCESS',
-          payload: products.map(
-            (obj: any) => [product].find((o) => o.id === obj.id) || obj
-          ),
+          payload: selectedProducts,
         })
       )
       .catch((err) => console.log('It failed!', err));
