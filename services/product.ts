@@ -1,4 +1,5 @@
 import { BOL_CATALOG_URL, DEFAULT_PARAMS } from 'services/globals';
+import { objectToQueryString } from './utils';
 
 export const initialState = {
   loading: true,
@@ -20,7 +21,7 @@ export const reducer = (state: any, action: any) => {
         ...state,
         loadingMore: true,
       };
-    case 'SEARCH_PRODUCTS_SUCCESS':
+    case 'UPDATE_PRODUCTS_SUCCESS':
       return {
         ...state,
         loading: false,
@@ -31,24 +32,17 @@ export const reducer = (state: any, action: any) => {
       return {
         ...state,
         loadingMore: false,
-        products: state.products.concat(action.payload),
+        products: [...state.products, ...action.payload],
       };
     case 'SEARCH_PRODUCTS_FAILURE':
       return {
         ...state,
         loading: false,
-        showCompare: false,
         errorMessage: action.error,
       };
     default:
       return state;
   }
-};
-
-const objectToQueryString = (obj: any) => {
-  return Object.keys(obj)
-    .map((key) => key + '=' + obj[key])
-    .join('&');
 };
 
 export async function fetcher(newParams?: object) {
@@ -66,9 +60,10 @@ export async function fetchProducts(
   dispatch: React.Dispatch<any>,
   newParams?: object
 ) {
-  let results = await fetcher(newParams);
+  const results = await fetcher(newParams);
+
   dispatch({
-    type: 'SEARCH_PRODUCTS_SUCCESS',
+    type: 'UPDATE_PRODUCTS_SUCCESS',
     payload: results.products,
   });
 }

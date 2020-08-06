@@ -1,9 +1,8 @@
 import React, { useReducer, useEffect } from 'react';
 import { set, get } from 'idb-keyval';
-
 import { Loader, SiteHeader, SideBar, Title, ProductList } from 'components';
-
 import { reducer, initialState } from 'services/product';
+import { Product } from 'interfaces/Product';
 
 const Compare = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -11,21 +10,21 @@ const Compare = () => {
   useEffect(() => {
     get('selectedProducts').then((db: any) => {
       dispatch({
-        type: 'SEARCH_PRODUCTS_SUCCESS',
+        type: 'UPDATE_PRODUCTS_SUCCESS',
         compare: true,
         payload: db ? db : [],
       });
     });
   }, []);
 
-  const handleRemove = (product: any) => {
+  const handleRemove = (product: Product) => {
     const selectedProducts = products.filter(
-      (item: any) => item.id !== product.id
+      (item: Product) => item.id !== product.id
     );
     set('selectedProducts', selectedProducts)
       .then(() =>
         dispatch({
-          type: 'SEARCH_PRODUCTS_SUCCESS',
+          type: 'UPDATE_PRODUCTS_SUCCESS',
           payload: selectedProducts,
         })
       )

@@ -1,7 +1,7 @@
 import React from 'react';
+import { Product } from 'interfaces/Product';
 import ProductListHeader from './ProductListHeader';
 import ProductListItem from './ProductListItem';
-import { Product } from './Product';
 import Analytics from 'components/Analytics';
 import { TableHeading } from 'services/globals';
 import Link from 'next/link';
@@ -9,7 +9,7 @@ import Link from 'next/link';
 
 interface IProps {
   products: Product[];
-  showAnalytics: boolean;
+  showAnalytics?: boolean;
   handleAddToCart?: any;
   handleRemove?: any;
   handleLoadMore?: any;
@@ -18,7 +18,7 @@ interface IProps {
 
 const ProductList = ({
   products,
-  showAnalytics,
+  showAnalytics = false,
   handleAddToCart,
   handleRemove,
   handleLoadMore,

@@ -11,10 +11,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.frappe-chart .x.axis text {
-  display: none;
-}
-
 .spinner {
   width: 40px;
   height: 40px;

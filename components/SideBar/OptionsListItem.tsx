@@ -1,5 +1,5 @@
 import React from 'react';
-import { Option } from './MenuOptions';
+import { Option } from 'interfaces/MenuOptions';
 
 interface Iprops {
   item: Option;

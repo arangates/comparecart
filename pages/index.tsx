@@ -16,20 +16,13 @@ import {
   fetchProducts,
   fetchMoreProducts,
 } from 'services/product';
+import { Product } from 'interfaces/Product';
 
 const MainPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     fetchProducts(dispatch);
-    // Auto redirect to compare if required
-    // get('selectedProducts').then((db: any) => {
-    //   if (db?.length > 0) {
-    //     Router.push('/compare');
-    //   } else {
-    //     fetchProducts(dispatch);
-    //   }
-    // });
   }, []);
 
   const search = (searchQuery: string) => {
@@ -44,15 +37,10 @@ const MainPage = () => {
       type: 'LOAD_MORE',
     });
     fetchMoreProducts(dispatch, { offset: products.length });
-    console.log('loading more');
   };
-  const handleAddToCart = (product: any) => {
-    // const selectedProducts = products.filter((item: any) => item.selected);
-    // if (selectedProducts.length === 10) {
-    //   return;
-    // }
+
+  const handleAddToCart = (product: Product) => {
     product.selected = !product.selected;
-    // console.table('slected prod', selectedProducts);
     const updatedProducts = products.map(
       (obj: any) => [product].find((o) => o.id === obj.id) || obj
     );
@@ -62,7 +50,7 @@ const MainPage = () => {
         console.log(product, products);
 
         dispatch({
-          type: 'SEARCH_PRODUCTS_SUCCESS',
+          type: 'UPDATE_PRODUCTS_SUCCESS',
           payload: updatedProducts,
         });
       })
@@ -91,7 +79,6 @@ const MainPage = () => {
               handleAddToCart={handleAddToCart}
               handleLoadMore={handleLoadMore}
               products={products}
-              showAnalytics={false}
               isLoadingMore={loadingMore}
             />
           )}
