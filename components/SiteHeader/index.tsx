@@ -2,10 +2,6 @@ import React from 'react';
 import HeaderLogo from './HeaderLogo';
 import Link from 'next/link';
 
-// interface Iprops {
-//   compare?: any;
-// }
-
 const SiteHeader = () => {
   return (
     <header className='bg-white-900 sm:flex sm:items-center sm:justify-between xl:bg-white'>

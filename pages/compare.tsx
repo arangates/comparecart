@@ -1,47 +1,32 @@
 import React, { useReducer, useEffect } from 'react';
 import { set, get } from 'idb-keyval';
 
-import {
-  Loader,
-  SiteHeader,
-  SideBar,
-  Title,
-  ProductList,
-} from 'components';
+import { Loader, SiteHeader, SideBar, Title, ProductList } from 'components';
 
-import { reducer, initialState, fetchProducts } from 'services/product';
+import { reducer, initialState } from 'services/product';
 
 const Compare = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     get('selectedProducts').then((db: any) => {
-      if (db?.length) {
-        dispatch({
-          type: 'SEARCH_PRODUCTS_SUCCESS',
-          compare: true,
-          payload: db,
-        });
-      } else {
-        fetchProducts(dispatch);
-      }
+      dispatch({
+        type: 'SEARCH_PRODUCTS_SUCCESS',
+        compare: true,
+        payload: db ? db : [],
+      });
     });
   }, []);
 
-
-  const handleAddToCart = (product: any) => {
+  const handleRemove = (product: any) => {
     const selectedProducts = products.filter(
       (product: any) => product.selected
     );
-    if (selectedProducts.length === 10) {
-      return;
-    }
     product.selected = !product.selected;
     set('selectedProducts', selectedProducts)
       .then(() =>
         dispatch({
           type: 'SEARCH_PRODUCTS_SUCCESS',
-          showCompare: showCompare,
           payload: products.map(
             (obj: any) => [product].find((o) => o.id === obj.id) || obj
           ),
@@ -49,7 +34,7 @@ const Compare = () => {
       )
       .catch((err) => console.log('It failed!', err));
   };
-  const { products, errorMessage, loading, showCompare } = state;
+  const { products, errorMessage, loading } = state;
 
   return (
     <div
@@ -59,11 +44,11 @@ const Compare = () => {
       <SiteHeader />
       <div className='xl:flex-1 xl:flex xl:overflow-y-hidden'>
         <SideBar />
-        <main className='py-1 ml-8 xl:flex-1 xl:overflow-x-hidden'>
+        <main className='py-1 ml-1 md:ml-8 xl:flex-1 xl:overflow-x-hidden'>
           <Title
             htmlFor='search'
             title='Compare cart'
-            subTitle={`you compare these ${products.length} items`}
+            subTitle={`you compare these ${products?.length} items`}
           />
           {loading && !errorMessage ? (
             <Loader />
@@ -71,7 +56,7 @@ const Compare = () => {
             <div className='errorMessage'>{errorMessage}</div>
           ) : (
             <ProductList
-              handleAddToCart={handleAddToCart}
+              handleRemove={handleRemove}
               products={products}
               showAnalytics={true}
             />

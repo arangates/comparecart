@@ -54,13 +54,13 @@ const MainPage = () => {
     console.log('loading more');
   };
   const handleAddToCart = (product: any) => {
+    product.selected = !product.selected;
     const selectedProducts = products.filter(
       (product: any) => product.selected
     );
     if (selectedProducts.length === 10) {
       return;
     }
-    product.selected = !product.selected;
     set('selectedProducts', selectedProducts)
       .then(() =>
         dispatch({
@@ -82,7 +82,7 @@ const MainPage = () => {
       <SiteHeader />
       <div className='xl:flex-1 xl:flex xl:overflow-y-hidden'>
         <SideBar />
-        <main className='py-1 ml-8 xl:flex-1'>
+        <main className='py-1 ml-1 md:ml-8 xl:flex-1'>
           <Title htmlFor='search' title='Search for a product' />
           <Search fetchProducts={search} />
 

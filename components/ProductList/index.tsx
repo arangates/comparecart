@@ -4,12 +4,14 @@ import ProductListItem from './ProductListItem';
 import { Product } from './Product';
 import Analytics from 'components/Analytics';
 import { TableHeading } from 'services/globals';
+import Link from 'next/link';
 // import Loader from 'components/Loader';
 
 interface IProps {
   products: Product[];
   showAnalytics: Boolean;
-  handleAddToCart: any;
+  handleAddToCart?: any;
+  handleRemove?: any;
   handleLoadMore?: any;
   isLoadingMore?: boolean;
 }
@@ -18,10 +20,11 @@ const ProductList = ({
   products,
   showAnalytics,
   handleAddToCart,
+  handleRemove,
   handleLoadMore,
   isLoadingMore,
 }: IProps) => {
-  return (
+  return products?.length ? (
     <>
       <h1 className='text-2xl h-6 py-5 text-blue-grey'>Results</h1>
       <div className='pt-5 ml-5 mr-20 flex justify-between text-gray-600 dark:text-gray-400'>
@@ -33,6 +36,7 @@ const ProductList = ({
         {products.map((product) => (
           <ProductListItem
             handleAddToCart={handleAddToCart}
+            handleRemove={handleRemove}
             key={product.id}
             product={product}
           />
@@ -95,6 +99,22 @@ const ProductList = ({
         ''
       )}
     </>
+  ) : (
+    <div className='flex h-screen/2'>
+      <div className='m-auto'>
+        <h1 className='text-gray-600 text-2xl h-10 dark:text-gray-400'>
+          Please add items to cart
+        </h1>
+        <Link href='/'>
+          <button
+            type='submit'
+            className='mt-8 md:mt-0 bg-indigo-700 hover:bg-indigo-400 text-white font-bold rounded-full ml-5 py-3 px-16'
+          >
+            Add now
+          </button>
+        </Link>
+      </div>
+    </div>
   );
 };
 

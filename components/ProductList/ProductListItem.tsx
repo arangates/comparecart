@@ -1,10 +1,10 @@
 import React from 'react';
 import { Product } from './Product';
-// import { set, get } from 'idb-keyval';
 
 interface IProps {
   product: Product;
-  handleAddToCart: any;
+  handleAddToCart?: any;
+  handleRemove?: any;
 }
 
 function getMinY(offers: any) {
@@ -48,12 +48,16 @@ const LowestPrice = ({ offers }: any) => {
   );
 };
 
-const ProductListItem = ({ product, handleAddToCart }: IProps) => {
+const ProductListItem = ({
+  product,
+  handleAddToCart,
+  handleRemove,
+}: IProps) => {
   return (
     <div className='mt-2 mr-5 pr-10 flex px-4 py-4 justify-between bg-white dark:bg-gray-600 shadow-md rounded-lg cursor-pointer'>
       <div className='flex justify-between'>
-        <img 
-          loading="lazy"
+        <img
+          loading='lazy'
           className='h-12 w-12 rounded-full object-cover'
           src={product.images ? product.images[1].url : ''}
           alt={product.title}
@@ -83,9 +87,12 @@ const ProductListItem = ({ product, handleAddToCart }: IProps) => {
 
       <div className='text-gray-600 dark:text-gray-400'>
         <span>
-          {product.selected}
           <button
-            onClick={() => handleAddToCart(product)}
+            onClick={() =>
+              product.selected
+                ? handleRemove(product)
+                : handleAddToCart(product)
+            }
             className='bg-transparent outline-none hover:bg-purple-100 text-indigo-700 font-semibold hover:text-indigo py-2 px-4 border border-indigo-500 hover:border-transparent rounded-full'
           >
             <span className='hidden md:block'>

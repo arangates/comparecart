@@ -15,10 +15,10 @@ interface chartProps {
 
 export const Chart = ({ items, title, colour }: chartProps) => {
   return (
-    <div className='flex-auto mt-2 px-4 py-4 w-500  bg-white dark:bg-gray-600 shadow-md rounded-lg cursor-pointer'>
+    <div className='flex-auto mt-2 px-4 py-4 wd-200 md:w-500  bg-white dark:bg-gray-600 shadow-md rounded-lg cursor-pointer'>
       <h2 className='text-2xl h-10 text-gray-700'>{title}</h2>
       <BarChart
-        width={600}
+        width={500}
         height={300}
         data={items}
         margin={{
