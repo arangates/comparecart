@@ -51,12 +51,13 @@ const MainPage = () => {
     // if (selectedProducts.length === 10) {
     //   return;
     // }
-    // product.selected = !product.selected;
+    product.selected = !product.selected;
     // console.table('slected prod', selectedProducts);
     const updatedProducts = products.map(
       (obj: any) => [product].find((o) => o.id === obj.id) || obj
     );
-    set('selectedProducts', updatedProducts)
+    const selectedProducts = updatedProducts.filter((item: any) => item.selected);
+    set('selectedProducts', selectedProducts)
       .then(() => {
         console.log(product, products);
 

@@ -1,7 +1,7 @@
 import { MenuOptions } from "components/SideBar/MenuOptions";
 
 export const BOL_SERVER = 'https://api.bol.com';
-export const PROXY_SERVER = 'https://cors-anywhere.herokuapp.com/';
+export const PROXY_SERVER = 'https://thingproxy.freeboard.io/fetch/';
 export const baseURL = PROXY_SERVER + BOL_SERVER;
 export const CATALOG_SEARCH = '/catalog/v4/search/';
 

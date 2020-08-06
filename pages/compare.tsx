@@ -19,6 +19,7 @@ const Compare = () => {
   }, []);
 
   const handleRemove = (product: any) => {
+    console.log(product)
     const selectedProducts = products.filter(
       (product: any) => product.selected
     );
