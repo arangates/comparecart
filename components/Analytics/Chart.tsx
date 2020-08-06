@@ -1,5 +1,11 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+} from 'recharts';
 
 interface chartProps {
   items: object[];
@@ -9,11 +15,10 @@ interface chartProps {
 
 export const Chart = ({ items, title, colour }: chartProps) => {
   return (
-    <div className='mt-2 px-4 py-4 w-6/12 min-w-xl bg-white dark:bg-gray-600 shadow-md rounded-lg cursor-pointer'>
+    <div className='flex-auto mt-2 px-4 py-4 w-500  bg-white dark:bg-gray-600 shadow-md rounded-lg cursor-pointer'>
       <h2 className='text-2xl h-10 text-gray-700'>{title}</h2>
-
       <BarChart
-        width={500}
+        width={600}
         height={300}
         data={items}
         margin={{
@@ -24,10 +29,13 @@ export const Chart = ({ items, title, colour }: chartProps) => {
         }}
       >
         <XAxis stroke={''} dataKey='name' tick={false} />
-        <YAxis stroke={''} domain={[10, 'auto']} />
+        <YAxis stroke={''} tick={{ fill: '#B0BEC5' }} />
         <Tooltip
-          cursor={{ stroke: '#9d8cc3', strokeWidth: 0.1 }}
-          formatter={(name) => [`${title} ${name}`]}
+          contentStyle={{
+            borderRadius: '20px',
+            borderColor: colour,
+          }}
+          formatter={(name) => [`${title}: ${name}`]}
         />
         <Bar
           dataKey='val'

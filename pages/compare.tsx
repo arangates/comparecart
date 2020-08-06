@@ -1,54 +1,34 @@
 import React, { useReducer, useEffect } from 'react';
-import { set } from 'idb-keyval';
-// import Router from 'next/router';
+import { set, get } from 'idb-keyval';
 
 import {
   Loader,
   SiteHeader,
   SideBar,
   Title,
-  Search,
   ProductList,
 } from 'components';
 
 import { reducer, initialState, fetchProducts } from 'services/product';
 
-const MainPage = () => {
+const Compare = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    fetchProducts(dispatch);
-    // get('selectedProducts').then((db: any) => {
-    //   if (db?.length > 0) {
-    //     Router.push('/compare');
-    //   } else {
-    //     fetchProducts(dispatch);
-    //   }
-    // });
+    get('selectedProducts').then((db: any) => {
+      if (db?.length) {
+        dispatch({
+          type: 'SEARCH_PRODUCTS_SUCCESS',
+          compare: true,
+          payload: db,
+        });
+      } else {
+        fetchProducts(dispatch);
+      }
+    });
   }, []);
 
-  const search = (searchQuery: string) => {
-    dispatch({
-      type: 'SEARCH_PRODUCTS_REQUEST',
-    });
-    fetchProducts(dispatch, searchQuery);
-  };
 
-  // const compareProducts = () => {
-  //   const selectedProducts = products.filter(
-  //     (product: any) => product.selected
-  //   );
-  //   set('selectedProducts', selectedProducts);
-  //   dispatch({
-  //     type: 'SEARCH_PRODUCTS_SUCCESS',
-  //     compare: true,
-  //     payload: selectedProducts,
-  //   });
-  // };
-
-  const handleLoadMore = () => {
-    console.log('loading more')
-  }
   const handleAddToCart = (product: any) => {
     const selectedProducts = products.filter(
       (product: any) => product.selected
@@ -61,6 +41,7 @@ const MainPage = () => {
       .then(() =>
         dispatch({
           type: 'SEARCH_PRODUCTS_SUCCESS',
+          showCompare: showCompare,
           payload: products.map(
             (obj: any) => [product].find((o) => o.id === obj.id) || obj
           ),
@@ -68,7 +49,7 @@ const MainPage = () => {
       )
       .catch((err) => console.log('It failed!', err));
   };
-  const { products, errorMessage, loading } = state;
+  const { products, errorMessage, loading, showCompare } = state;
 
   return (
     <div
@@ -78,10 +59,12 @@ const MainPage = () => {
       <SiteHeader />
       <div className='xl:flex-1 xl:flex xl:overflow-y-hidden'>
         <SideBar />
-        <main className='py-1 ml-8 xl:flex-1'>
-          <Title htmlFor='search' title='Search for a product' />
-          <Search fetchProducts={search} />
-
+        <main className='py-1 ml-8 xl:flex-1 xl:overflow-x-hidden'>
+          <Title
+            htmlFor='search'
+            title='Compare cart'
+            subTitle={`you compare these ${products.length} items`}
+          />
           {loading && !errorMessage ? (
             <Loader />
           ) : errorMessage ? (
@@ -89,9 +72,8 @@ const MainPage = () => {
           ) : (
             <ProductList
               handleAddToCart={handleAddToCart}
-              handleLoadMore={handleLoadMore}
               products={products}
-              showAnalytics={false}
+              showAnalytics={true}
             />
           )}
         </main>
@@ -100,4 +82,4 @@ const MainPage = () => {
   );
 };
 
-export default MainPage;
+export default Compare;

@@ -2,7 +2,6 @@ import { BOL_CATALOG_URL, DEFAULT_PARAMS } from 'services/globals';
 
 export const initialState = {
   loading: true,
-  showCompare: false,
   products: [],
   errorMessage: null,
 };
@@ -13,21 +12,18 @@ export const reducer = (state: any, action: any) => {
       return {
         ...state,
         loading: true,
-        showCompare: false,
         errorMessage: null,
       };
     case 'SHOW_COMPARE':
       return {
         ...state,
         loading: true,
-        showCompare: true,
         errorMessage: null,
       };
     case 'SEARCH_PRODUCTS_SUCCESS':
       return {
         ...state,
         loading: false,
-        showCompare: action.compare || false,
         products: action.payload,
       };
     case 'SEARCH_PRODUCTS_FAILURE':

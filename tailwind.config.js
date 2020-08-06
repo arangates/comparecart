@@ -2,6 +2,9 @@ module.exports = {
   purge: ['./components/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      height: {
+        'screen/2': '50vh',
+      },
       spacing: {
         '72': '18rem',
         '80': '20rem',
@@ -16,4 +19,4 @@ module.exports = {
   },
   variants: {},
   plugins: [],
-}
+};
