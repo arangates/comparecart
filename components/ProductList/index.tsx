@@ -46,16 +46,15 @@ const ProductList = ({
             showAnalytics={showAnalytics}
           />
         ))}
-      </div>
-      {showAnalytics ? (
+        {showAnalytics ? (
         ''
       ) : (
-        <div className='flex items-center justify-center md:py-5 px-16'>
+        <div className='flex items-center justify-center py-2 md:py-5 px-16'>
           <button
             type='button'
             disabled={isLoadingMore}
             onClick={handleLoadMore}
-            className='flex bg-indigo-700 hover:bg-indigo-400 md:w-30 text-white text-md font-bold rounded-full py-2 md:py-4 px-20'
+            className='flex bg-indigo-700 hover:bg-indigo-400 md:w-30 text-white text-md font-bold rounded-full py-2 md:py-4 px-10 md:px-20'
           >
             {isLoadingMore ? (
               <svg
@@ -85,6 +84,7 @@ const ProductList = ({
           </button>
         </div>
       )}
+      </div>
       {showAnalytics ? (
         <Analytics
           prices={products.map((product) => {
