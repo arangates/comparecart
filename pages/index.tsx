@@ -56,6 +56,9 @@ const MainPage = () => {
     product.selected = !product.selected;
     const dbResponse: Product[] = (await get(INDEXED_DB_NAME)) || [];
     const selectedProducts = [...dbResponse, ...[product]];
+    if(selectedProducts.length>10) {
+      return
+    }
     await set(INDEXED_DB_NAME, selectedProducts);
     const syncedResults = await syncWithDb(products);
     dispatch({
