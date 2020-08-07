@@ -10,11 +10,7 @@ import {
   ProductList,
 } from 'components';
 
-import {
-  reducer,
-  initialState,
-  fetchProducts,
-} from 'services/product';
+import { reducer, initialState, fetchProducts } from 'services/product';
 import { Product } from 'interfaces/Product';
 import { INDEXED_DB_NAME } from 'services/globals';
 
@@ -63,14 +59,11 @@ const MainPage = () => {
     if (selectedProducts.length > 10) {
       return;
     }
-    await set(INDEXED_DB_NAME, selectedProducts)
-      .then(() => {
-        dispatch({
-          type: 'UPDATE_PRODUCTS_SUCCESS',
-          payload: updatedProducts,
-        });
-      })
-      .catch((err) => console.log('It failed!', err));
+    await set(INDEXED_DB_NAME, selectedProducts);
+    dispatch({
+      type: 'UPDATE_PRODUCTS_SUCCESS',
+      payload: updatedProducts,
+    });
   };
   const { products, errorMessage, loading, loadingMore, searchQuery } = state;
 

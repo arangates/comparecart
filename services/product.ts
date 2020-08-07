@@ -7,6 +7,10 @@ import { objectToQueryString } from './utils';
 import { get } from 'idb-keyval';
 import { Product } from 'interfaces/Product';
 
+interface syncFn {
+  (products: Product[]): Promise<Product[]>;
+}
+
 export const initialState = {
   loading: true,
   products: [],
@@ -64,35 +68,29 @@ export async function fetcher(newParams?: object) {
   return response.json();
 }
 
-export const getDb = async () => {
-  get('selectedProducts').then((db: any) => {
-    const selectedIds = db?.map((item: any) => item.id);
-    return selectedIds;
-  });
-};
-
 export async function fetchProducts(
   dispatch: React.Dispatch<any>,
   newParams?: any
 ) {
   const results = await fetcher(newParams);
-  const products: Product[] = results.products;
-  get(INDEXED_DB_NAME).then((db: any) => {
-    const selectedIds = db?.map((item: any) => item.id);
-    products.forEach(
-      (p: Product) => (p.selected = true && selectedIds.includes(p.id))
-    );
-
-    if (newParams?.offset) {
-      dispatch({
-        type: 'LOAD_MORE_SUCCESS',
-        payload: products,
-      });
-    } else {
-      dispatch({
-        type: 'UPDATE_PRODUCTS_SUCCESS',
-        payload: products,
-      });
-    }
-  });
+  const syncedProducts = await syncWithDb(results.products);
+  if (newParams?.offset) {
+    dispatch({
+      type: 'LOAD_MORE_SUCCESS',
+      payload: syncedProducts,
+    });
+  } else {
+    dispatch({
+      type: 'UPDATE_PRODUCTS_SUCCESS',
+      payload: syncedProducts,
+    });
+  }
 }
+export const syncWithDb: syncFn = async (products: Product[]) => {
+  const dbResponse: any = await get(INDEXED_DB_NAME);
+  const selectedIds = dbResponse.map((item: Product) => item.id);
+  products.forEach(
+    (p: Product) => (p.selected = true && selectedIds.includes(p.id))
+  );
+  return products;
+};
