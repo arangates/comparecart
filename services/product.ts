@@ -1,12 +1,18 @@
-import { BOL_CATALOG_URL, DEFAULT_PARAMS } from 'services/globals';
+import {
+  BOL_CATALOG_URL,
+  DEFAULT_PARAMS,
+  INDEXED_DB_NAME,
+} from 'services/globals';
 import { objectToQueryString } from './utils';
+import { get } from 'idb-keyval';
+import { Product } from 'interfaces/Product';
 
 export const initialState = {
   loading: true,
   products: [],
   searchQuery: '',
   errorMessage: null,
-  loadingMore: false
+  loadingMore: false,
 };
 
 export const reducer = (state: any, action: any) => {
@@ -58,25 +64,35 @@ export async function fetcher(newParams?: object) {
   return response.json();
 }
 
+export const getDb = async () => {
+  get('selectedProducts').then((db: any) => {
+    const selectedIds = db?.map((item: any) => item.id);
+    return selectedIds;
+  });
+};
+
 export async function fetchProducts(
   dispatch: React.Dispatch<any>,
-  newParams?: object
+  newParams?: any
 ) {
   const results = await fetcher(newParams);
+  const products: Product[] = results.products;
+  get(INDEXED_DB_NAME).then((db: any) => {
+    const selectedIds = db?.map((item: any) => item.id);
+    products.forEach(
+      (p: Product) => (p.selected = true && selectedIds.includes(p.id))
+    );
 
-  dispatch({
-    type: 'UPDATE_PRODUCTS_SUCCESS',
-    payload: results.products,
-  });
-}
-
-export async function fetchMoreProducts(
-  dispatch: React.Dispatch<any>,
-  newParams?: object
-) {
-  let results = await fetcher(newParams);
-  dispatch({
-    type: 'LOAD_MORE_SUCCESS',
-    payload: results.products,
+    if (newParams?.offset) {
+      dispatch({
+        type: 'LOAD_MORE_SUCCESS',
+        payload: products,
+      });
+    } else {
+      dispatch({
+        type: 'UPDATE_PRODUCTS_SUCCESS',
+        payload: products,
+      });
+    }
   });
 }

@@ -5,7 +5,6 @@ import ProductListItem from './ProductListItem';
 import Analytics from 'components/Analytics';
 import { TableHeading } from 'services/globals';
 import Link from 'next/link';
-// import Loader from 'components/Loader';
 
 interface IProps {
   products: Product[];

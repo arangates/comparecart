@@ -14,7 +14,6 @@ import {
   reducer,
   initialState,
   fetchProducts,
-  fetchMoreProducts,
 } from 'services/product';
 import { Product } from 'interfaces/Product';
 import { INDEXED_DB_NAME } from 'services/globals';
@@ -47,7 +46,7 @@ const MainPage = () => {
       console.log(products.length);
       currentOffset = Math.ceil((products.length + 1) / 10) * 10;
     }
-    fetchMoreProducts(dispatch, {
+    fetchProducts(dispatch, {
       q: searchQuery ? searchQuery : 'harry',
       offset: currentOffset,
     });
