@@ -21,14 +21,11 @@ const Compare = () => {
     const selectedProducts = products.filter(
       (item: Product) => item.id !== product.id
     );
-    await set('selectedProducts', selectedProducts)
-      .then(() =>
-        dispatch({
-          type: 'UPDATE_PRODUCTS_SUCCESS',
-          payload: selectedProducts,
-        })
-      )
-      .catch((err) => console.log('It failed!', err));
+    await set('selectedProducts', selectedProducts);
+    dispatch({
+      type: 'UPDATE_PRODUCTS_SUCCESS',
+      payload: selectedProducts,
+    });
   };
   const { products, errorMessage, loading } = state;
 

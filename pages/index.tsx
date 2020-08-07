@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-import { set } from 'idb-keyval';
+import { set, get } from 'idb-keyval';
 
 import {
   Loader,
@@ -10,7 +10,12 @@ import {
   ProductList,
 } from 'components';
 
-import { reducer, initialState, fetchProducts } from 'services/product';
+import {
+  reducer,
+  initialState,
+  fetchProducts,
+  syncWithDb,
+} from 'services/product';
 import { Product } from 'interfaces/Product';
 import { INDEXED_DB_NAME } from 'services/globals';
 
@@ -39,7 +44,6 @@ const MainPage = () => {
     if (products.length % 20 === 0) {
       currentOffset = products.length;
     } else {
-      console.log(products.length);
       currentOffset = Math.ceil((products.length + 1) / 10) * 10;
     }
     fetchProducts(dispatch, {
@@ -50,19 +54,26 @@ const MainPage = () => {
 
   const handleAddToCart = async (product: Product) => {
     product.selected = !product.selected;
-    const updatedProducts = products.map(
-      (obj: any) => [product].find((o) => o.id === obj.id) || obj
-    );
-    const selectedProducts = updatedProducts.filter(
-      (item: any) => item.selected
-    );
-    if (selectedProducts.length > 10) {
-      return;
-    }
+    const dbResponse: Product[] = (await get(INDEXED_DB_NAME)) || [];
+    const selectedProducts = [...dbResponse, ...[product]];
     await set(INDEXED_DB_NAME, selectedProducts);
+    const syncedResults = await syncWithDb(products);
     dispatch({
       type: 'UPDATE_PRODUCTS_SUCCESS',
-      payload: updatedProducts,
+      payload: syncedResults,
+    });
+  };
+
+  const handleRemove = async (product: Product) => {
+    const dbResponse: Product[] = (await get(INDEXED_DB_NAME)) || [];
+    const selectedProducts = dbResponse.filter(
+      (item: Product) => item.id !== product.id
+    );
+    await set('selectedProducts', selectedProducts);
+    const syncedResults = await syncWithDb(products);
+    dispatch({
+      type: 'UPDATE_PRODUCTS_SUCCESS',
+      payload: syncedResults,
     });
   };
   const { products, errorMessage, loading, loadingMore, searchQuery } = state;
@@ -86,6 +97,7 @@ const MainPage = () => {
           ) : (
             <ProductList
               handleAddToCart={handleAddToCart}
+              handleRemove={handleRemove}
               handleLoadMore={handleLoadMore}
               products={products}
               isLoadingMore={loadingMore}

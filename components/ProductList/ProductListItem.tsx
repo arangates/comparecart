@@ -52,7 +52,6 @@ const ProductListItem = ({
   product,
   handleAddToCart,
   handleRemove,
-  showAnalytics,
   index,
 }: IProps) => {
   return (
@@ -87,7 +86,7 @@ const ProductListItem = ({
         <span>
           <button
             onClick={() =>
-              showAnalytics ? handleRemove(product) : handleAddToCart(product)
+              product.selected ? handleRemove(product) : handleAddToCart(product)
             }
             className='bg-transparent outline-none hover:bg-purple-100 text-indigo-700 font-semibold hover:text-indigo py-2 px-4 border border-indigo-500 hover:border-transparent rounded-full'
           >

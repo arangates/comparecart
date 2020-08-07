@@ -88,7 +88,9 @@ export async function fetchProducts(
 }
 export const syncWithDb: syncFn = async (products: Product[]) => {
   const dbResponse: any = await get(INDEXED_DB_NAME);
-  const selectedIds = dbResponse.map((item: Product) => item.id);
+  const selectedIds = dbResponse
+    ? dbResponse.map((item: Product) => item.id)
+    : [];
   products.forEach(
     (p: Product) => (p.selected = true && selectedIds.includes(p.id))
   );
