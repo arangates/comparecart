@@ -3,7 +3,7 @@ import Head from 'next/head';
 
 import { AppProps } from 'next/app';
 
-function MyApp({ Component, pageProps }: AppProps) {
+function CompareCart({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
@@ -16,4 +16,4 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
 }
 
-export default MyApp;
+export default CompareCart;

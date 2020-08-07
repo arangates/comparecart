@@ -1,4 +1,3 @@
-import React from 'react';
 import { Product } from 'interfaces/Product';
 
 interface IProps {
@@ -56,7 +55,7 @@ const ProductListItem = ({
 }: IProps) => {
   return (
     <div
-      className={`product-item--shadow mt-2 mx-5 pr-10 flex px-5 py-6 justify-between bg-white shadow-lg rounded-lg cursor-pointer ${
+      className={`product-item--shadow mt-2 mx-2 pr-10 flex px-5 py-6 justify-between bg-white shadow-lg rounded-lg cursor-pointer ${
         index === 0 ? 'top-border--radius' : ''
       }`}
     >

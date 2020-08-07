@@ -1,4 +1,3 @@
-import React from 'react';
 import OptionsListItem from './OptionsListItem';
 import OptionsListHeading from './OptionsListHeading';
 import { MenuOptions, Option } from 'interfaces/MenuOptions';

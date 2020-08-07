@@ -1,5 +1,3 @@
-import React from 'react';
-
 const Search = ({ fetchProducts }: any) => {
   const handleOnSubmit = (event: any) => {
     event.preventDefault();

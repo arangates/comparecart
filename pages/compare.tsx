@@ -3,6 +3,8 @@ import { set, get } from 'idb-keyval';
 import { Loader, SiteHeader, SideBar, Title, ProductList } from 'components';
 import { reducer, initialState } from 'services/product';
 import { Product } from 'interfaces/Product';
+import { Layout } from 'containers/Layout';
+import { Main } from 'containers/Main';
 
 const Compare = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -30,14 +32,10 @@ const Compare = () => {
   const { products, errorMessage, loading } = state;
 
   return (
-    <div
-      id='app'
-      className='min-h-screen bg-white-200 antialiased xl:flex xl:flex-col xl:h-screen'
-    >
+    <Layout>
       <SiteHeader />
-      <div className='xl:flex-1 xl:flex xl:overflow-y-hidden'>
-        <SideBar />
-        <main className='py-1 ml-1 md:ml-8 xl:flex-1 xl:overflow-x-hidden'>
+      <SideBar>
+        <Main>
           <Title
             htmlFor='search'
             title='Compare cart'
@@ -54,9 +52,9 @@ const Compare = () => {
               showAnalytics={true}
             />
           )}
-        </main>
-      </div>
-    </div>
+        </Main>
+      </SideBar>
+    </Layout>
   );
 };
 

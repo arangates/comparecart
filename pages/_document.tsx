@@ -20,7 +20,7 @@ class MyDocument extends Document {
             name='description'
             content='The compare cart will show the difference between the sellers, rating and price.'
           />
-          <link rel='apple-touch-icon' href='/maskable_logo1024.png'></link>
+          <link rel='apple-touch-icon' href='/logo192.png'></link>
           <link rel='manifest' href='/manifest.webmanifest'></link>
         </Head>
         <body>

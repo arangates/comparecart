@@ -1,4 +1,3 @@
-import React from 'react';
 import { Option } from 'interfaces/MenuOptions';
 
 interface Iprops {

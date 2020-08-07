@@ -18,6 +18,8 @@ import {
 } from 'services/product';
 import { Product } from 'interfaces/Product';
 import { INDEXED_DB_NAME } from 'services/globals';
+import { Layout } from 'containers/Layout';
+import { Main } from 'containers/Main';
 
 const MainPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -56,8 +58,8 @@ const MainPage = () => {
     product.selected = !product.selected;
     const dbResponse: Product[] = (await get(INDEXED_DB_NAME)) || [];
     const selectedProducts = [...dbResponse, ...[product]];
-    if(selectedProducts.length>10) {
-      return
+    if (selectedProducts.length > 10) {
+      return;
     }
     await set(INDEXED_DB_NAME, selectedProducts);
     const syncedResults = await syncWithDb(products);
@@ -82,14 +84,10 @@ const MainPage = () => {
   const { products, errorMessage, loading, loadingMore, searchQuery } = state;
 
   return (
-    <div
-      id='app'
-      className='min-h-screen bg-white-200 antialiased xl:flex xl:flex-col xl:h-screen'
-    >
+    <Layout>
       <SiteHeader />
-      <div className='xl:flex-1 xl:flex xl:overflow-y-hidden'>
-        <SideBar />
-        <main className='py-1 ml-1 md:ml-8 xl:flex-1'>
+      <SideBar>
+        <Main>
           <Title htmlFor='search' title='Search for a product' />
           <Search fetchProducts={search} />
 
@@ -106,9 +104,9 @@ const MainPage = () => {
               isLoadingMore={loadingMore}
             />
           )}
-        </main>
-      </div>
-    </div>
+        </Main>
+      </SideBar>
+    </Layout>
   );
 };
 
