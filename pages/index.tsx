@@ -17,6 +17,7 @@ import {
   fetchMoreProducts,
 } from 'services/product';
 import { Product } from 'interfaces/Product';
+import { INDEXED_DB_NAME } from 'services/globals';
 
 const MainPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -39,16 +40,17 @@ const MainPage = () => {
     fetchMoreProducts(dispatch, { offset: products.length });
   };
 
-  const handleAddToCart = (product: Product) => {
+  const handleAddToCart = async (product: Product) => {
     product.selected = !product.selected;
     const updatedProducts = products.map(
       (obj: any) => [product].find((o) => o.id === obj.id) || obj
     );
     const selectedProducts = updatedProducts.filter((item: any) => item.selected);
-    set('selectedProducts', selectedProducts)
+    if(selectedProducts.length >10) {
+      return
+    }
+    await set(INDEXED_DB_NAME, selectedProducts)
       .then(() => {
-        console.log(product, products);
-
         dispatch({
           type: 'UPDATE_PRODUCTS_SUCCESS',
           payload: updatedProducts,

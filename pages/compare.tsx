@@ -17,11 +17,11 @@ const Compare = () => {
     });
   }, []);
 
-  const handleRemove = (product: Product) => {
+  const handleRemove = async (product: Product) => {
     const selectedProducts = products.filter(
       (item: Product) => item.id !== product.id
     );
-    set('selectedProducts', selectedProducts)
+    await set('selectedProducts', selectedProducts)
       .then(() =>
         dispatch({
           type: 'UPDATE_PRODUCTS_SUCCESS',
