@@ -3,7 +3,6 @@ import {
   DEFAULT_PARAMS,
   INDEXED_DB_NAME,
 } from 'services/globals';
-import { objectToQueryString } from './utils';
 import { get } from 'idb-keyval';
 import { Product } from 'interfaces/Product';
 
@@ -55,6 +54,12 @@ export const reducer = (state: any, action: any) => {
     default:
       return state;
   }
+};
+
+export const objectToQueryString = (obj: any) => {
+  return Object.keys(obj)
+    .map((key) => key + '=' + obj[key])
+    .join('&');
 };
 
 export async function fetcher(newParams?: object) {

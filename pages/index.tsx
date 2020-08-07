@@ -20,9 +20,11 @@ import { Product } from 'interfaces/Product';
 import { INDEXED_DB_NAME } from 'services/globals';
 import { Layout } from 'containers/Layout';
 import { Main } from 'containers/Main';
+import { GetStaticProps } from 'next';
 
 const MainPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
 
   useEffect(() => {
     fetchProducts(dispatch);
@@ -109,5 +111,19 @@ const MainPage = () => {
     </Layout>
   );
 };
+
+export const getStaticProps: GetStaticProps = async () => {
+
+  const res = await fetch('https://api.bol.com/catalog/v4/search/?q=harry&limit=20&dataoutput=products&apikey=DA31B370BBDF4DE78B57BBEA652ADC94&format=json');
+  const posts: any = await res.json();
+  const products = posts.products;
+
+  return {
+    props: {
+      products,
+      loading:false
+    },
+  };
+}
 
 export default MainPage;
