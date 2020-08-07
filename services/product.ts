@@ -91,7 +91,7 @@ export const syncWithDb: syncFn = async (products: Product[]) => {
   const selectedIds = dbResponse
     ? dbResponse.map((item: Product) => item.id)
     : [];
-  products.forEach(
+  products?.forEach(
     (p: Product) => (p.selected = true && selectedIds.includes(p.id))
   );
   return products;

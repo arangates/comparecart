@@ -33,7 +33,7 @@ const ProductList = ({
       </div>
       <div
         className={`h-screen/2 overflow-auto ${
-          showAnalytics ? '' : '-ml-8'
+          showAnalytics ? '' : 'sm:ml-0 md:-ml-8'
         } md:mt-5`}
       >
         {products.map((product, index) => (
