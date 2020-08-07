@@ -35,18 +35,22 @@ const MainPage = () => {
   };
 
   const handleLoadMore = () => {
+    let currentOffset = products.length;
     dispatch({
       type: 'LOAD_MORE',
       searchQuery: searchQuery,
     });
+
     if (products.length % 20 === 0) {
-      fetchMoreProducts(dispatch, {
-        q: searchQuery ? searchQuery : 'harry',
-        offset: products.length,
-      });
+      currentOffset = products.length;
     } else {
       console.log(products.length);
+      currentOffset = Math.ceil((products.length + 1) / 10) * 10;
     }
+    fetchMoreProducts(dispatch, {
+      q: searchQuery ? searchQuery : 'harry',
+      offset: currentOffset,
+    });
   };
 
   const handleAddToCart = async (product: Product) => {
@@ -69,13 +73,7 @@ const MainPage = () => {
       })
       .catch((err) => console.log('It failed!', err));
   };
-  const {
-    products,
-    errorMessage,
-    loading,
-    loadingMore,
-    searchQuery,
-  } = state;
+  const { products, errorMessage, loading, loadingMore, searchQuery } = state;
 
   return (
     <div

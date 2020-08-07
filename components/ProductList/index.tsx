@@ -27,7 +27,7 @@ const ProductList = ({
   return products?.length ? (
     <>
       <h1 className='text-2xl h-6 py-5 md:pt-16 text-gray-800'>Results</h1>
-      <div className='pt-8 mr-20 flex justify-between text-gray-600 dark:text-gray-400'>
+      <div className='pt-8 mr-32 flex justify-between text-gray-600 dark:text-gray-400'>
         {TableHeading.map((heading) => (
           <ProductListHeader key={heading.id} item={heading} />
         ))}
