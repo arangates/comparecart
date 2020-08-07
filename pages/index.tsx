@@ -29,6 +29,7 @@ const MainPage = () => {
   const search = (searchQuery: string) => {
     dispatch({
       type: 'SEARCH_PRODUCTS_REQUEST',
+      searchQuery: searchQuery,
     });
     fetchProducts(dispatch, { q: searchQuery });
   };
@@ -36,8 +37,16 @@ const MainPage = () => {
   const handleLoadMore = () => {
     dispatch({
       type: 'LOAD_MORE',
+      searchQuery: searchQuery,
     });
-    fetchMoreProducts(dispatch, { offset: products.length });
+    if (products.length % 20 === 0) {
+      fetchMoreProducts(dispatch, {
+        q: searchQuery ? searchQuery : 'harry',
+        offset: products.length,
+      });
+    } else {
+      console.log(products.length);
+    }
   };
 
   const handleAddToCart = async (product: Product) => {
@@ -45,9 +54,11 @@ const MainPage = () => {
     const updatedProducts = products.map(
       (obj: any) => [product].find((o) => o.id === obj.id) || obj
     );
-    const selectedProducts = updatedProducts.filter((item: any) => item.selected);
-    if(selectedProducts.length >10) {
-      return
+    const selectedProducts = updatedProducts.filter(
+      (item: any) => item.selected
+    );
+    if (selectedProducts.length > 10) {
+      return;
     }
     await set(INDEXED_DB_NAME, selectedProducts)
       .then(() => {
@@ -58,7 +69,13 @@ const MainPage = () => {
       })
       .catch((err) => console.log('It failed!', err));
   };
-  const { products, errorMessage, loading, loadingMore } = state;
+  const {
+    products,
+    errorMessage,
+    loading,
+    loadingMore,
+    searchQuery,
+  } = state;
 
   return (
     <div

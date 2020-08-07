@@ -9,7 +9,6 @@ export const BOL_CATALOG_URL = baseURL + CATALOG_SEARCH;
 export const INDEXED_DB_NAME = 'selectedProducts'
 export const DEFAULT_PARAMS: object = {
   q: 'harry',
-  offset: 0,
   limit: 20,
   dataoutput: 'products',
   apikey: 'DA31B370BBDF4DE78B57BBEA652ADC94',
@@ -39,7 +38,7 @@ export const TableHeading = [
   },
   {
     id: 6,
-    name: 'Action thing',
+    name: 'Action',
   },
 ];
 

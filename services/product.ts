@@ -4,8 +4,9 @@ import { objectToQueryString } from './utils';
 export const initialState = {
   loading: true,
   products: [],
+  searchQuery: '',
   errorMessage: null,
-  loadingMore: false,
+  loadingMore: false
 };
 
 export const reducer = (state: any, action: any) => {
@@ -14,6 +15,7 @@ export const reducer = (state: any, action: any) => {
       return {
         ...state,
         loading: true,
+        searchQuery: action.searchQuery,
         errorMessage: null,
       };
     case 'LOAD_MORE':

@@ -6,7 +6,7 @@ interface IProps {
 
 const ProductListHeader = ({ item }: IProps) => {
   return (
-    <span key={item.id} className='hidden md:block flex items-center'>
+    <span key={item.id} className='hidden md:flex items-center'>
       {item.name}
     </span>
   );

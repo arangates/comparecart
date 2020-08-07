@@ -26,19 +26,24 @@ const ProductList = ({
 }: IProps) => {
   return products?.length ? (
     <>
-      <h1 className='text-2xl h-6 py-5 text-blue-grey'>Results</h1>
-      <div className='pt-5 ml-5 mr-20 flex justify-between text-gray-600 dark:text-gray-400'>
+      <h1 className='text-2xl h-6 py-5 md:pt-16 text-gray-800'>Results</h1>
+      <div className='pt-8 mr-20 flex justify-between text-gray-600 dark:text-gray-400'>
         {TableHeading.map((heading) => (
           <ProductListHeader key={heading.id} item={heading} />
         ))}
       </div>
-      <div className='h-screen/2 overflow-auto'>
-        {products.map((product) => (
+      <div
+        className={`h-screen/2 overflow-auto ${
+          showAnalytics ? '' : '-ml-8'
+        } md:mt-5`}
+      >
+        {products.map((product, index) => (
           <ProductListItem
             handleAddToCart={handleAddToCart}
             handleRemove={handleRemove}
             key={product.id}
             product={product}
+            index={index}
             showAnalytics={showAnalytics}
           />
         ))}

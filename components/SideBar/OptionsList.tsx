@@ -9,7 +9,7 @@ interface Iprops {
 
 const OptionsList = ({ menuOptions }: Iprops) => {
   return (
-    <div className='sidebar-content px-4 py-6'>
+    <div className='sidebar-content px-4 py-2'>
       <ul className='flex flex-col w-full'>{renderOptions(menuOptions)}</ul>
     </div>
   );

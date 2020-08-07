@@ -8,7 +8,7 @@ const Search = ({ fetchProducts }: any) => {
 
   return (
       <form onSubmit={handleOnSubmit}>
-        <div className='flex flex-col md:flex-row items-center md:items-start relative py-1 md:py-5'>
+        <div className='flex flex-col md:flex-row items-center md:items-start relative py-1 md:py-2'>
           <input
             id='search'
             name='search'
@@ -18,7 +18,7 @@ const Search = ({ fetchProducts }: any) => {
           />
           <button
             type='submit'
-            className='mt-2 md:mt-0 bg-indigo-700 hover:bg-indigo-400 text-white font-bold rounded-full ml-5 py-2 px-16'
+            className='mt-2 md:mt-0 bg-indigo-700 hover:bg-indigo-400 text-white font-bold rounded-full ml-5 py-2 md:py-3 px-16'
           >
             Search
           </button>

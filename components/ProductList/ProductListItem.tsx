@@ -6,6 +6,7 @@ interface IProps {
   handleAddToCart?: any;
   handleRemove?: any;
   showAnalytics?: boolean;
+  index: number;
 }
 
 function getMinY(offers: any) {
@@ -33,16 +34,16 @@ const AveragePrice = ({ offers }: any) => {
   }
 
   return (
-    <div className='hidden md:block text-gray-600 dark:text-gray-400'>
-      <span className='mt-2 text-black dark:text-gray-200'>€{avgPrice}</span>
+    <div className='hidden md:block text-gray-700'>
+      <span className='mt-2'>€{avgPrice}</span>
     </div>
   );
 };
 
 const LowestPrice = ({ offers }: any) => {
   return (
-    <div className='hidden md:block text-gray-600 dark:text-gray-400'>
-      <span className='mt-2 text-black dark:text-gray-200'>
+    <div className='hidden md:block text-gray-700'>
+      <span className='mt-2'>
         €{getMinY(offers)}
       </span>
     </div>
@@ -53,41 +54,40 @@ const ProductListItem = ({
   product,
   handleAddToCart,
   handleRemove,
-  showAnalytics
+  showAnalytics,
+  index
 }: IProps) => {
   return (
-    <div className='mt-2 mr-5 pr-10 flex px-4 py-4 justify-between bg-white dark:bg-gray-600 shadow-md rounded-lg cursor-pointer'>
-      <div className='flex justify-between'>
+    <div className={`product-item--shadow mt-2 mx-5 pr-10 flex px-5 py-6 justify-between bg-white shadow-lg rounded-lg cursor-pointer ${index===0 ? "top-border--radius" : ""}`}>
+      <div className='flex product-title--width'>
         <img
           loading='lazy'
-          className='h-12 w-12 rounded-full object-cover'
+          className='h-12 w-8 object-cover'
           src={product.images ? product.images[1].url : ''}
           alt={product.title}
         />
 
-        <div className='ml-4 flex flex-col text-gray-600 dark:text-gray-400'>
-          <span className='w-20 max-w-xs truncate mt-2 text-black dark:text-gray-200'>
+        <div className='ml-4 flex flex-col text-gray-800'>
+          <span className='truncate'>
             {product.title}
           </span>
-          <span>EAN:{product.ean}</span>
+          <span className="text-gray-600">EAN:{product.ean}</span>
         </div>
       </div>
       <AveragePrice offers={product.offerData.offers} />
       <LowestPrice offers={product.offerData.offers} />
 
-      <div className='hidden md:block text-gray-600 dark:text-gray-400'>
-        <span className='mt-2 text-black dark:text-gray-200'>
+      <div className='hidden md:block text-gray-700'>
           {product.rating}
-        </span>
       </div>
 
-      <div className='hidden md:block text-gray-600 dark:text-gray-400'>
-        <span className='mt-2 text-black dark:text-gray-200'>
+      <div className='hidden md:block text-gray-700'>
+        <span className='mt-2'>
           {product.offerData.offers.length}
         </span>
       </div>
 
-      <div className='text-gray-600 dark:text-gray-400'>
+      <div className='text-gray-700'>
         <span>
           <button
             onClick={() =>
@@ -97,11 +97,10 @@ const ProductListItem = ({
             }
             className='bg-transparent outline-none hover:bg-purple-100 text-indigo-700 font-semibold hover:text-indigo py-2 px-4 border border-indigo-500 hover:border-transparent rounded-full'
           >
-            <span className='hidden md:block'>
+            <span className='hidden md:block w-32'>
               {product.selected ? 'Remove' : 'Add to cart'}
             </span>
             <span className='sm:block md:hidden'>
-              {' '}
               {product.selected ? '-' : '+'}
             </span>
           </button>

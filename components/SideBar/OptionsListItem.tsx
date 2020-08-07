@@ -10,7 +10,7 @@ const OptionsListItem = ({ item }: Iprops) => {
     <li key={item.id} className='my-px'>
       <a
         href={`/` + item.name}
-        className='flex flex-row items-center h-10 px-3 rounded-lg blue-gray-300 hover:bg-purple-200 hover:text-purple-700 hover:purple-800'
+        className='flex flex-row items-center h-10 px-4 leading-snug rounded-lg font-medium text-gray-800 hover:bg-indigo-100 hover:text-indigo-700 hover:indigo-500'
       >
         <span className='flex items-center justify-center text-lg blue-grey-800'>
           <svg
