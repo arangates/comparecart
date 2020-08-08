@@ -113,12 +113,7 @@ export const MenuItems: MenuOptions[] = [
         id: 3,
         icon: 'some.svg',
         name: 'Item Name',
-      },
-      {
-        id: 4,
-        icon: 'some.svg',
-        name: 'Item Name',
-      },
+      }
     ],
   },
   {
@@ -134,17 +129,7 @@ export const MenuItems: MenuOptions[] = [
         id: 2,
         icon: 'some.svg',
         name: 'Item Name',
-      },
-      {
-        id: 3,
-        icon: 'some.svg',
-        name: 'Item Name',
-      },
-      {
-        id: 4,
-        icon: 'some.svg',
-        name: 'Item Name',
-      },
+      }
     ],
   },
 ];

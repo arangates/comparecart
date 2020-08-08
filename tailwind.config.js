@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        'screen/2': '58vh',
+        'screen/2': '60vh',
       },
       spacing: {
         '72': '18rem',

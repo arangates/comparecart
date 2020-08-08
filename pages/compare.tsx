@@ -4,7 +4,7 @@ import { Loader, SiteHeader, SideBar, Title, ProductList } from 'components';
 import { reducer, initialState } from 'services/product';
 import { Product } from 'interfaces/Product';
 import { Layout } from 'containers/Layout';
-import { Main } from 'containers/Main';
+import { MainContainer } from 'containers/Main';
 
 const Compare = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -35,7 +35,7 @@ const Compare = () => {
     <Layout>
       <SiteHeader />
       <SideBar>
-        <Main>
+        <MainContainer>
           <Title
             htmlFor='search'
             title='Compare cart'
@@ -52,7 +52,7 @@ const Compare = () => {
               showAnalytics={true}
             />
           )}
-        </Main>
+        </MainContainer>
       </SideBar>
     </Layout>
   );

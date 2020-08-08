@@ -1,6 +1,6 @@
-export const Main = ({ children }: any) => {
+export const MainContainer = ({ children }: any) => {
   return (
-    <main className='py-1 sm:ml-1 md:ml-8 xl:flex-1 xl:overflow-x-hidden'>
+    <main className='py-1 xl:flex-1 px-5'>
       {children}
     </main>
   );

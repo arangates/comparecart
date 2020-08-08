@@ -19,7 +19,7 @@ import {
 import { Product } from 'interfaces/Product';
 import { INDEXED_DB_NAME } from 'services/globals';
 import { Layout } from 'containers/Layout';
-import { Main } from 'containers/Main';
+import { MainContainer } from 'containers/Main';
 
 const MainPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -88,7 +88,7 @@ const MainPage = () => {
     <Layout>
       <SiteHeader />
       <SideBar>
-        <Main>
+        <MainContainer>
           <Title htmlFor='search' title='Search for a product' />
           <Search fetchProducts={search} />
 
@@ -105,7 +105,7 @@ const MainPage = () => {
               isLoadingMore={loadingMore}
             />
           )}
-        </Main>
+        </MainContainer>
       </SideBar>
     </Layout>
   );
