@@ -14,6 +14,8 @@ import { default as Store } from './Store';
 import { default as TachometerAlt } from './TachometerAlt';
 import { default as Truck } from './Truck';
 import { default as Bars } from './Bars';
+import { default as Bell } from './Bell';
+import { default as Cart } from './Cart';
 
 const Icon: any = (props: React.SVGProps<SVGSVGElement>) => {
   switch (props.name) {
@@ -49,6 +51,10 @@ const Icon: any = (props: React.SVGProps<SVGSVGElement>) => {
       return <Truck {...props} />;
     case 'Bars':
       return <Bars {...props} />;
+    case 'Bell':
+      return <Bell {...props} />;
+    case 'Cart':
+      return <Cart {...props} />;
     default:
       return;
   }

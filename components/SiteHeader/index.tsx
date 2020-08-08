@@ -1,5 +1,5 @@
 import HeaderLogo from './HeaderLogo';
-import { Nav } from './Nav';
+import Nav from './Nav';
 
 const SiteHeader = () => {
   return (
