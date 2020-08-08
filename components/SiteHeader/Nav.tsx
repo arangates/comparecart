@@ -1,10 +1,10 @@
 import Link from 'next/link';
 import { Avatar } from './Avatar';
 import Icon from 'icons';
-import { useRouter } from 'next/router'
+import { useRouter } from 'next/router';
 
- const Nav = () => {
-   const router = useRouter()
+const Nav = () => {
+  const router = useRouter();
 
   return (
     <nav className='sm:flex sm:items-center sm:px-4 xl:flex-1 xl:justify-end hidden'>
@@ -24,8 +24,9 @@ import { useRouter } from 'next/router'
           </span>
         </div>
         <Avatar />
+        <Icon className='mr-8' name='Menu' width={18} />
       </div>
     </nav>
   );
-}
-export default Nav
+};
+export default Nav;

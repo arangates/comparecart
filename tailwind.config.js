@@ -13,7 +13,7 @@ module.exports = {
         '5/6': '83.3333333%',
       },
       colors: {
-        'royalblue': {
+        royalblue: {
           50: '#F6F6FE',
           100: '#ECEEFE',
           200: '#D1D4FB',
@@ -24,8 +24,7 @@ module.exports = {
           700: '#293290',
           800: '#1F256C',
           900: '#151948',
-          },
-        'accent-1': '#333',
+        },
       },
     },
   },

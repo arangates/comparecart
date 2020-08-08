@@ -16,6 +16,7 @@ import { default as Truck } from './Truck';
 import { default as Bars } from './Bars';
 import { default as Bell } from './Bell';
 import { default as Cart } from './Cart';
+import { default as Menu } from './Menu';
 
 const Icon: any = (props: React.SVGProps<SVGSVGElement>) => {
   switch (props.name) {
@@ -55,6 +56,8 @@ const Icon: any = (props: React.SVGProps<SVGSVGElement>) => {
       return <Bell {...props} />;
     case 'Cart':
       return <Cart {...props} />;
+    case 'Menu':
+      return <Menu {...props} />;
     default:
       return;
   }
