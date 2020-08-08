@@ -6,7 +6,7 @@ interface Iprops {
 
 const Analytics = ({ prices, ratings }: Iprops) => {
   return (
-    <div className='flex-col md:flex-row flex  justify-between py-10 px-5 relative'>
+    <div className='flex-col md:flex-row flex  justify-between py-10 md:px-5 relative'>
       {prices ? (
         <Chart colour='#6A75F3' title='Avg. Price' items={prices} />
       ) : (

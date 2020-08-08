@@ -81,7 +81,7 @@ const ProductListItem = ({
         <span className='mt-2'>{product.offerData.offers.length}</span>
       </div>
 
-      <div className='text-gray-700'>
+      <div className='text-gray-700 px-4 md:px-0'>
         <span>
           <button
             onClick={() =>

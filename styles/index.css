@@ -86,6 +86,13 @@ button:focus {
   border-radius: 24px;
 }
 
+@media (max-width: 768px) {
+  .graph-card--shadow {
+      width: 100%;
+      max-width: 100%;
+  }
+}
+
 .top-border--radius {
   border-radius: 24px 24px 8px 8px;
 }

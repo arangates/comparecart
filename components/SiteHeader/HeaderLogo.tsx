@@ -2,15 +2,15 @@ import Link from 'next/link';
 
 function HeaderLogo() {
   return (
-    <div className='flex justify-between px-4 py-3 xl:w-72 xl:bg-white-900 xl:justify-start xl:py-3 cursor-pointer shadow'>
+    <div className='flex justify-between px-4 py-3 xl:w-72 xl:bg-white-900 xl:justify-start xl:py-3 cursor-pointer xl:shadow'>
       <Link href='/'>
         <img loading='lazy' alt='logo' src='./logo.png' />
       </Link>
       <Link href='/compare'>
-        <span className='flex md:hidden items-center justify-center text-lg blue-grey-800 mr-10 cursor-pointer'>
+        <span className='flex sm:hidden items-center justify-center text-lg blue-grey-800 mr-10 cursor-pointer'>
           <svg
-            width='30'
-            height='30'
+            width='25'
+            height='25'
             viewBox='0 0 16 16'
             fill='none'
             xmlns='http://www.w3.org/2000/svg'

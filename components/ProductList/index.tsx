@@ -31,7 +31,7 @@ const ProductList = ({
         ))}
       </div>
       <div
-        className={`h-screen/2 overflow-auto md:mt-5`}
+        className={`h-screen/2 overflow-auto -ml-5 md:mt-5`}
       >
         {products.map((product, index) => (
           <ProductListItem

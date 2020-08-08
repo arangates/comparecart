@@ -8,7 +8,7 @@ interface chartProps {
 
 export const Chart = ({ items, title, colour }: chartProps) => {
   return (
-    <div className='graph-card--shadow flex-auto px-6 py-5 bg-white dark:bg-gray-600 shadow-md rounded-lg cursor-pointer'>
+    <div className='graph-card--shadow flex-auto px-6 py-5 bg-white dark:bg-gray-600 shadow-md rounded-lg cursor-pointer mb-8 md:mb-0'>
       <h2 className='text-2xl h-10 text-gray-700'>{title}</h2>
       <BarChart
         width={500}
