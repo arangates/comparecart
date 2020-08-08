@@ -1,4 +1,4 @@
-export interface MenuOptions {
+ export interface MenuOptions {
   id:      number;
   name:    string;
   options: Option[];

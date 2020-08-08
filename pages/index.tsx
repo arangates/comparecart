@@ -24,7 +24,6 @@ import { MainContainer } from 'containers/Main';
 const MainPage = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-
   useEffect(() => {
     fetchProducts(dispatch);
   }, []);
@@ -110,6 +109,5 @@ const MainPage = () => {
     </Layout>
   );
 };
-
 
 export default MainPage;

@@ -6,7 +6,7 @@ export const baseURL = PROXY_SERVER + BOL_SERVER;
 export const CATALOG_SEARCH = '/catalog/v4/search/';
 export const BOL_CATALOG_URL = baseURL + CATALOG_SEARCH;
 
-export const INDEXED_DB_NAME = 'selectedProducts'
+export const INDEXED_DB_NAME = 'selectedProducts';
 export const DEFAULT_PARAMS: object = {
   q: 'harry',
   limit: 20,
@@ -49,22 +49,22 @@ export const MenuItems: MenuOptions[] = [
     options: [
       {
         id: 1,
-        icon: 'some.svg',
+        icon: 'TachometerAlt',
         name: 'Item Name',
       },
       {
         id: 2,
-        icon: 'some.svg',
+        icon: 'BoxHeart',
         name: 'Item Name',
       },
       {
         id: 3,
-        icon: 'some.svg',
+        icon: 'Truck',
         name: 'Item Name',
       },
       {
         id: 4,
-        icon: 'some.svg',
+        icon: 'Bullhorn',
         name: 'Item Name',
       },
     ],
@@ -75,22 +75,27 @@ export const MenuItems: MenuOptions[] = [
     options: [
       {
         id: 1,
-        icon: 'some.svg',
+        icon: 'Analytics',
         name: 'Item Name',
       },
       {
         id: 2,
-        icon: 'some.svg',
+        icon: 'Database',
         name: 'Item Name',
       },
       {
         id: 3,
-        icon: 'some.svg',
+        icon: 'Search',
         name: 'Item Name',
       },
       {
         id: 4,
-        icon: 'some.svg',
+        icon: 'SpellCheck',
+        name: 'Item Name',
+      },
+      {
+        id: 5,
+        icon: 'Calculator',
         name: 'Item Name',
       },
     ],
@@ -101,19 +106,14 @@ export const MenuItems: MenuOptions[] = [
     options: [
       {
         id: 1,
-        icon: 'some.svg',
+        icon: 'Camcorder',
         name: 'Item Name',
       },
       {
         id: 2,
-        icon: 'some.svg',
+        icon: 'Books',
         name: 'Item Name',
       },
-      {
-        id: 3,
-        icon: 'some.svg',
-        name: 'Item Name',
-      }
     ],
   },
   {
@@ -122,14 +122,19 @@ export const MenuItems: MenuOptions[] = [
     options: [
       {
         id: 1,
-        icon: 'some.svg',
+        icon: 'Account',
         name: 'Item Name',
       },
       {
         id: 2,
-        icon: 'some.svg',
+        icon: 'CreditCard',
         name: 'Item Name',
-      }
+      },
+      {
+        id: 3,
+        icon: 'Store',
+        name: 'Item Name',
+      },
     ],
   },
 ];
