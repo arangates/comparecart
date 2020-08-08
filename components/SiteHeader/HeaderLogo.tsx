@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Icon from 'icons';
 
 function HeaderLogo() {
   return (
@@ -28,6 +29,7 @@ function HeaderLogo() {
               fill='#4553F0'
             />
           </svg>
+          <Icon name='Bars' width={15} fill='#78909C' />
         </span>
       </Link>
     </div>

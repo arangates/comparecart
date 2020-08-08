@@ -51,7 +51,7 @@ const ProductList = ({
               type='button'
               disabled={isLoadingMore}
               onClick={handleLoadMore}
-              className='flex bg-indigo-700 hover:bg-indigo-400 md:w-30 text-white text-md font-bold rounded-full py-2 md:py-4 px-10 md:px-20'
+              className='flex bg-royalblue-500 hover:bg-royalblue-400 md:w-30 text-white text-md font-bold rounded-full py-2 md:py-4 px-10 md:px-20'
             >
               {isLoadingMore ? (
                 <svg

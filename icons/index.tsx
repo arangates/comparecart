@@ -13,6 +13,7 @@ import { default as SpellCheck } from './SpellCheck';
 import { default as Store } from './Store';
 import { default as TachometerAlt } from './TachometerAlt';
 import { default as Truck } from './Truck';
+import { default as Bars } from './Bars';
 
 const Icon: any = (props: React.SVGProps<SVGSVGElement>) => {
   switch (props.name) {
@@ -46,6 +47,8 @@ const Icon: any = (props: React.SVGProps<SVGSVGElement>) => {
       return <TachometerAlt {...props} />;
     case 'Truck':
       return <Truck {...props} />;
+    case 'Bars':
+      return <Bars {...props} />;
     default:
       return;
   }

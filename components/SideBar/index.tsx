@@ -5,7 +5,7 @@ const SideBar = ({ children }: any) => {
   return (
     <div className='xl:flex-1 xl:flex xl:overflow-y-hidden'>
       <section className='bg-white-800 xl:w-72 shadow'>
-        <div className='xl:h-full xl:flex xl:flex-col xl:justify-between hidden'>
+        <div className='xl:h-full xl:flex xl:flex-col xl:justify-between'>
           <OptionsList menuOptions={MenuItems} />
         </div>
       </section>

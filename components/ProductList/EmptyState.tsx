@@ -9,7 +9,7 @@ export function EmptyState() {
         <Link href='/'>
           <button
             type='submit'
-            className='mt-8 md:mt-0 bg-indigo-700 hover:bg-indigo-400 text-white font-bold rounded-full ml-5 py-3 px-16'
+            className='mt-8 md:mt-0 bg-royalblue-500 hover:bg-royalblue-400 text-white font-bold rounded-full ml-5 py-3 px-16'
           >
             Add now
           </button>

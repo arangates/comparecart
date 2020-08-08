@@ -55,7 +55,7 @@ const ProductListItem = ({
 }: IProps) => {
   return (
     <div
-      className={`product-item--shadow mt-2 mx-2 pr-10 flex px-5 py-6 justify-between bg-white shadow-lg rounded-lg cursor-pointer ${
+      className={`product-item--shadow mt-2 mx-2 pr-10 flex px-8 py-6 justify-between bg-white shadow-lg rounded-lg cursor-pointer ${
         index === 0 ? 'top-border--radius' : ''
       }`}
     >
@@ -85,14 +85,16 @@ const ProductListItem = ({
         <span>
           <button
             onClick={() =>
-              product.selected ? handleRemove(product) : handleAddToCart(product)
+              product.selected
+                ? handleRemove(product)
+                : handleAddToCart(product)
             }
-            className='bg-transparent outline-none hover:bg-purple-100 text-indigo-700 font-semibold hover:text-indigo py-2 px-4 border border-indigo-500 hover:border-transparent rounded-full'
+            className='bg-royalblue-500 md:bg-transparent outline-none md:hover:bg-royalblue-100 text-royalblue-500 font-semibold py-2 px-4 border border-royalblue-500 rounded-full'
           >
             <span className='hidden md:block w-32'>
               {product.selected ? 'Remove' : 'Add to cart'}
             </span>
-            <span className='sm:block md:hidden'>
+            <span className='sm:block md:hidden text-white'>
               {product.selected ? '-' : '+'}
             </span>
           </button>
